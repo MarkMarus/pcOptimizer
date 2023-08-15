@@ -1,20 +1,31 @@
+#include <iostream>
 #include <fstream>
 #include <string>
-#include <iostream>
+#include <conio.h>
+using namespace std;
 
 void getSettings() {
-    std::fstream fs;
-    fs.open("settings.cfg", std::ios::in);
+    ifstream fs("settings.cfg");
 
     if (!fs.is_open()) {
-        std::cerr << "Error opening the file." << std::endl;
+        cout << "Oops.. something is wrong with your configuration file. Please try again with another file." << endl;
         return;
     }
 
-    std::string line;
-    while (std::getline(fs, line)) {
-        std::cout << line << std::endl;
+    const char* settings[4] = { "Blue", "Red", "Orange", "Yellow" };
+    string Line;
+    unsigned int found = 0;
+
+    while (getline(fs, Line)) {
+        for (int i = 0; i < sizeof(settings) / sizeof(settings[0]); i++) {
+            if (Line == settings[i])
+                ++found;
+        }
     }
 
     fs.close();
+
+    cout << "Number of settings found: " << found << endl;
+    cout << "Press enter to exit." << endl;
+    cin.get();
 }
