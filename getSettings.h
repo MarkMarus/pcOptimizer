@@ -3,5 +3,6 @@
 #define GETSETTINGS_H
 
 void getSettings();
+void getCurrentThreads();
 
 #endif
