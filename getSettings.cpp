@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <thread>
+#include <stdlib.h>
 using namespace std;
 
 const auto processor_count = std::thread::hardware_concurrency();
@@ -46,7 +47,8 @@ void getCurrentThreads() {
         string threads = settingsMap["threads"];
         if (threads == "max")
         {
-            std::cout << "Hello loh!" << endl;
+            int threadsToSet = processor_count;
+            std::cout << threadsToSet;
         }
     }
 }
